@@ -1,0 +1,58 @@
+<!--<pre>-->
+<!--{{$ctrl.model.gallery_blocks| json}}-->
+<!--</pre>-->
+<div class="modal-header">
+    <h3 class="modal-title">Управление галереями</h3>
+</div>
+<div class="modal-body" id="modal-body">
+    <div class="box box-primary box-solid" ng-repeat="(name, block) in $ctrl.model.gallery_blocks">
+        <div class="box-header ui-sortable-handle" style="cursor: move;">
+            <i class="fa fa-picture-o"></i>
+            <div ng-if="block.max" class="pull-right">
+                Загружено: {{block.items.length}} из {{block.max}}
+            </div>
+            <h3 class="box-title">{{block.label|uppercase}}
+            </h3>
+        </div>
+        <div class="box-body">
+            <adminlte-uploader
+                    on-complete-item="$ctrl.onCompleteItem"
+                    exts="'|jpeg|jpg|png|gif|'"
+                    is-multiple="true"
+                    url="block.url_upload"></adminlte-uploader>
+
+            <div class="row">
+                <div class="col-lg-{{block.grid}}" ng-repeat="file in block.items">
+                    <div class="box box-solid1 box-primary">
+                        <div class="box-header" title="{{file.name}}">
+                            <h3 class="box-title" style="white-space: nowrap;overflow: hidden">{{file.name}}</h3>
+                        </div>
+                        <div class="box-body">
+                            <adminlte-thumb-step1 model="file"></adminlte-thumb-step1>
+                        </div>
+                        <div class="box-footer text-sm">
+                            <div class="box-tools pull-right">
+                                <div class="box-tools pull-right">
+                                    <div class="btn-group">
+                                <span class="btn btn-primary btn-xs" title="Редактировать вложение" ng-click="$ctrl.actionEdit(file)">
+                                    <i class="fa fa-pencil"></i>
+                                </span>
+                                        <span class="btn btn-danger btn-xs" title="Удалить вложение" ng-click="$ctrl.actionRemove(file)">
+                                    <i class="fa fa-times"></i>
+                                </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="label label-default">#{{file.id}}</span>
+                            <span ng-bind-html="file.desc"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-danger" ng-click="$ctrl.cancel()">Отмена</button>
+</div>
+
