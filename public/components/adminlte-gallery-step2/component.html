@@ -34,12 +34,15 @@
                             <div class="box-tools pull-right">
                                 <div class="box-tools pull-right">
                                     <div class="btn-group">
-                                <span class="btn btn-primary btn-xs" title="Редактировать вложение" ng-click="$ctrl.actionEdit(file)">
-                                    <i class="fa fa-pencil"></i>
-                                </span>
+                                        <span class="btn btn-success btn-xs" title="Редактировать вложение" ng-click="$ctrl.actionEdit(file)">
+                                            <i class="fa fa-sort"></i> {{file.priority}}
+                                        </span>
+                                        <span class="btn btn-primary btn-xs" title="Редактировать вложение" ng-click="$ctrl.actionEdit(file)">
+                                            <i class="fa fa-pencil"></i>
+                                        </span>
                                         <span class="btn btn-danger btn-xs" title="Удалить вложение" ng-click="$ctrl.actionRemove(file)">
-                                    <i class="fa fa-times"></i>
-                                </span>
+                                            <i class="fa fa-times"></i>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
