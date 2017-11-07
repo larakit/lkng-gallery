@@ -28,7 +28,12 @@ Route::post(
         $thumb_class = \Illuminate\Support\Arr::get($config, $block . '.thumb');
         if(class_exists($thumb_class)) {
             $thumb = new $thumb_class($o->id);
-            if($thumb->processing(\Request::file('file'))) {
+            if(Request::has('base64')){
+                $source = \Request::input('base64');
+            } else {
+                $source = \Request::file('file');
+            }
+            if($thumb->processing($source)) {
                 return [
                     'result'  => 'success',
                     'url'     => $thumb->getUrl('_'),

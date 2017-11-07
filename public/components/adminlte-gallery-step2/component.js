@@ -18,10 +18,20 @@
         var $ctrl = this;
         //регистрируем действие ПОСЛЕ успешной загрузки
         $ctrl.onCompleteItem = function (fileItem, response) {
+            console.log(arguments);
             $ctrl.model = response.model;
         };
+        $ctrl.onPaste = function (base64, url) {
+            $http
+                .post(url, {
+                    base64:base64
+                })
+                .then(function (response) {
+                    $ctrl.model = response.data.model;
+                });
+        };
         $ctrl.actionRemove = function (file) {
-            if(confirm('Вы действительно хотите удалить вложение?')) {
+            if (confirm('Вы действительно хотите удалить вложение?')) {
                 $http
                     .post('/!/gallery/' + file.hash + '/delete')
                     .then(function (response) {

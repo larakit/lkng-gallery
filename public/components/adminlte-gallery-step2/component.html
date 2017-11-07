@@ -15,11 +15,21 @@
             </h3>
         </div>
         <div class="box-body">
-            <adminlte-uploader
-                    on-complete-item="$ctrl.onCompleteItem"
-                    exts="'|jpeg|jpg|png|gif|'"
-                    is-multiple="true"
-                    url="block.url_upload"></adminlte-uploader>
+            <div class="row">
+                <div class="col-lg-1 text-center">
+                    <adminlte-injector-clipboard
+                            on-paste="$ctrl.onPaste"
+                            url="block.url_upload"
+                    ></adminlte-injector-clipboard>
+                </div>
+                <div class="col-lg-11">
+                    <adminlte-uploader
+                            on-complete-item="$ctrl.onCompleteItem"
+                            exts="'|jpeg|jpg|png|gif|'"
+                            is-multiple="true"
+                            url="block.url_upload"></adminlte-uploader>
+                </div>
+            </div>
 
             <div class="row">
                 <div class="col-lg-{{block.grid}}" ng-repeat="file in block.items">
