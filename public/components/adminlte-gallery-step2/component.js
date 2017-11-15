@@ -3,7 +3,7 @@
     angular
         .module('larakit')
         .component('adminlteGalleryStep2', {
-            templateUrl: '/packages/larakit/lkng-gallery/components/adminlte-gallery-step2/component.html',
+            templateUrl: '/packages/larakit/lkng-gallery/components/adminlte-gallery-step2/component.html?'+Math.random(),
             bindings: {
                 resolve: '<',
                 close: '&',
